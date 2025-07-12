@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Velta Accounts</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('https://i.ibb.co/Qvz3ByfV/image.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: white;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
+
+    /* Navbar Styles */
+    .navbar-container {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        0 0 12px 3px rgba(142, 48, 230, 0.6),
+        0 4px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .navbar-container::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, 50%);
+      left: var(--mouse-x, 50%);
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(207, 0, 255, 0.3) 0%, transparent 70%);
+      opacity: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+      filter: drop-shadow(0 0 8px #cf00ff);
+    }
+
+    .navbar-container.hovering::before {
+      opacity: 1;
+    }
+
+    .navbar-container::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -150%;
+      width: 40px;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.7) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: rotate(25deg);
+      transition: transform 2.5s ease, left 2.5s ease, opacity 2.5s ease;
+      pointer-events: none;
+      border-radius: 16px;
+      z-index: 1;
+      opacity: 0;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+    }
+
+    .navbar-container.hovering::after {
+      left: 150%;
+      opacity: 0.6;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .navbar-logo img {
+      height: 40px;
+      width: auto;
+      border-radius: 8px;
+    }
+
+    .navbar-title {
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #7e19dd, #c93edc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
+      position: relative;
+      z-index: 2;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .navbar-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar-links a:hover:not(.discord-button) {
+      color: #dbdadb;
+    }
+
+    .discord-button {
+      cursor: pointer;
+      color: white;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background-color: #313fdb;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.2s ease-in;
+      text-decoration: none;
+      border: none;
+    }
+
+    .discord-button:hover {
+      background-color: #3b49e3;
+      color: white;
+    }
+
+    .discord-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding-top: 120px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* Features Section */
+    .features-section {
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    .features-section h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-box {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-box::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, 50%);
+      left: var(--mouse-x, 50%);
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(207, 0, 255, 0.3) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 0 8px #cf00ff);
+    }
+
+    .feature-box.hovering::before {
+      opacity: 1;
+    }
+
+    .feature-box::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -150%;
+      width: 40px;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.7) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: rotate(25deg);
+      transition: transform 0.6s ease, left 0.6s ease, opacity 0.6s ease;
+      pointer-events: none;
+      border-radius: 16px;
+      z-index: 1;
+      opacity: 0;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+    }
+
+    .feature-box.hovering::after {
+      left: 150%;
+      opacity: 0.6;
+    }
+
+    .feature-icon {
+      height: 50px;
+      width: 50px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(255, 192, 203, 0.5), 0 0 20px rgba(255, 192, 203, 0.3) inset;
+      z-index: 2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-icon img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .feature-box h3,
+    .feature-box p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-box h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .feature-box p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* Products Section */
+    .products-section {
+      margin-bottom: 80px;
+    }
+
+    .products-section h2 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-item {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-item::before {
+      content: none;
+    }
+
+    .product-item::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -150%;
+      width: 40px;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.7) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: rotate(25deg);
+      transition: transform 0.6s ease, left 0.6s ease, opacity 0.6s ease;
+      pointer-events: none;
+      border-radius: 16px;
+      z-index: 1;
+      opacity: 0;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+    }
+
+    .product-item.hovering::after {
+      left: 150%;
+      opacity: 0.6;
+    }
+
+    .product-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .product-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 15px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .product-prices {
+      font-size: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .product-prices .old-price {
+      text-decoration: line-through;
+      color: #e3c3e6;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .product-prices .current-price {
+      font-weight: 700;
+      color: #fbfafc;
+      font-size: 18px;
+    }
+
+    .view-details-button {
+      background: linear-gradient(90deg, #8e30e6, #de58f0);
+      border: none;
+      border-radius: 20px;
+      padding: 12px 24px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-align: center;
+      width: auto;
+      user-select: none;
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .view-details-button:hover {
+      background: linear-gradient(90deg, #de58f0, #8e30e6);
+      transform: scale(1.05);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .navbar-container {
+        top: 10px;
+        width: calc(100% - 20px);
+        padding: 10px 15px;
+      }
+
+      .navbar-logo img {
+        height: 35px;
+      }
+
+      .navbar-title {
+        font-size: 16px;
+      }
+
+      .navbar-links {
+        gap: 15px;
+      }
+
+      .navbar-links a {
+        font-size: 14px;
+      }
+
+      .discord-button {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .discord-button svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .main-content {
+        padding-top: 100px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .features-section h2,
+      .products-section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .feature-box {
+        padding: 25px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .product-item {
+        padding: 20px;
+      }
+
+      .product-image {
+        width: 120px;
+        height: 120px;
+      }
+
+      .product-title {
+        font-size: 18px;
+      }
+
+      .view-details-button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+      }
+
+      .navbar-links {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .main-content {
+        padding-top: 140px;
+      }
+
+      .features-section h2,
+      .products-section h2 {
+        font-size: 24px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-item {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <img src="https://i.ibb.co/KpBsZTqd/IMG-8090.png" alt="Server Logo" />
+      <div class="navbar-title">Velta Accounts</div>
+    </div>
+    <div class="navbar-links">
+      <a href="#">Home</a>
+      <a href="#products-section">Products</a>
+      <a href="https://discord.gg/velta" target="_blank" class="discord-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <path
+            d="M39.248,10.177c-2.804-1.287-5.812-2.235-8.956-2.778c-0.057-0.01-0.114,0.016-0.144,0.068	c-0.387,0.688-0.815,1.585-1.115,2.291c-3.382-0.506-6.747-0.506-10.059,0c-0.3-0.721-0.744-1.603-1.133-2.291	c-0.03-0.051-0.087-0.077-0.144-0.068c-3.143,0.541-6.15,1.489-8.956,2.778c-0.024,0.01-0.045,0.028-0.059,0.051	c-5.704,8.522-7.267,16.835-6.5,25.044c0.003,0.04,0.026,0.079,0.057,0.103c3.763,2.764,7.409,4.442,10.987,5.554	c0.057,0.017,0.118-0.003,0.154-0.051c0.846-1.156,1.601-2.374,2.248-3.656c0.038-0.075,0.002-0.164-0.076-0.194	c-1.197-0.454-2.336-1.007-3.432-1.636c-0.087-0.051-0.094-0.175-0.014-0.234c0.231-0.173,0.461-0.353,0.682-0.534	c0.04-0.033,0.095-0.04,0.142-0.019c7.201,3.288,14.997,3.288,22.113,0c0.047-0.023,0.102-0.016,0.144,0.017	c0.22,0.182,0.451,0.363,0.683,0.536c0.08,0.059,0.075,0.183-0.012,0.234c-1.096,0.641-2.236,1.182-3.434,1.634	c-0.078,0.03-0.113,0.12-0.075,0.196c0.661,1.28,1.415,2.498,2.246,3.654c0.035,0.049,0.097,0.07,0.154,0.052	c3.595-1.112,7.241-2.79,11.004-5.554c0.033-0.024,0.054-0.061,0.057-0.101c0.917-9.491-1.537-17.735-6.505-25.044	C39.293,10.205,39.272,10.187,39.248,10.177z M16.703,30.273c-2.168,0-3.954-1.99-3.954-4.435s1.752-4.435,3.954-4.435	c2.22,0,3.989,2.008,3.954,4.435C20.658,28.282,18.906,30.273,16.703,30.273z M31.324,30.273c-2.168,0-3.954-1.99-3.954-4.435	s1.752-4.435,3.954-4.435c2.22,0,3.989,2.008,3.954,4.435C35.278,28.282,33.544,30.273,31.324,30.273z"
+            fill="white"
+          ></path>
+        </svg>
+        Our Discord
+      </a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="features-section">
+      <h2>WHY US?</h2>
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">
+            <img src="https://i.ibb.co/BFZDpdN/IMG-8113.png" alt="Delivery Icon" />
+          </div>
+          <h3>Instant Delivery</h3>
+          <p>Instant delivery is available for the majority of our products, ensuring the best possible experience.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">
+            <img src="https://i.ibb.co/7xkprx5d/IMG-8114.png" alt="Reputation Icon" />
+          </div>
+          <h3>Reputable</h3>
+          <p>Trusted by thousands, our service consistently delivers excellence and maintains a stellar industry reputation.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">
+            <img src="https://i.ibb.co/NgH5xPMw/IMG-8115.png" alt="High Quality Icon" />
+          </div>
+          <h3>High Quality</h3>
+          <p>Verified quality and authenticity guaranteed, meeting the highest standards for customer satisfaction and reliability.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="products-section" class="products-section">
+      <h2>OUR PRODUCTS</h2>
+      <div class="products-grid">
+        <div class="product-item">
+          <div class="product-image" style="background-image: url('https://i.ibb.co/KpBsZTqd/IMG-8090.png');"></div>
+          <div class="product-title">CS2 NFA Account</div>
+          <div class="product-prices">
+            <span class="current-price">0.85€</span>
+            <span class="old-price">1.99€</span>
+          </div>
+          <a class="view-details-button" href="https://velta.mysellauth.com/product/cs2-nfa-account" target="_blank">View Details</a>
+        </div>
+        <div class="product-item">
+          <div class="product-image" style="background-image: url('https://i.ibb.co/KpBsZTqd/IMG-8090.png');"></div>
+          <div class="product-title">CS2 FA Account</div>
+          <div class="product-prices">
+            <span class="current-price">11.99€</span>
+            <span class="old-price">15.99€</span>
+          </div>
+          <a class="view-details-button" href="https://velta.mysellauth.com/product/cs2-fa-account" target="_blank">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Navbar glow + glare interaction
+    const navbar = document.querySelector('.navbar-container');
+    let navbarGlareVisible = false;
+
+    navbar.addEventListener('mousemove', (e) => {
+      const rect = navbar.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      navbar.style.setProperty('--mouse-x', `${x}px`);
+      navbar.style.setProperty('--mouse-y', `${y}px`);
+
+      if (!navbarGlareVisible) {
+        navbar.classList.add('hovering');
+        navbarGlareVisible = true;
+      }
+    });
+
+    navbar.addEventListener('mouseleave', () => {
+      navbar.classList.remove('hovering');
+      navbarGlareVisible = false;
+    });
+
+    // Feature boxes glow and glare
+    document.querySelectorAll('.feature-box').forEach(box => {
+      let glowVisible = false;
+
+      box.addEventListener('mousemove', (e) => {
+        const rect = box.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        box.style.setProperty('--mouse-x', `${x}px`);
+        box.style.setProperty('--mouse-y', `${y}px`);
+
+        if (!glowVisible) {
+          box.classList.add('hovering');
+          glowVisible = true;
+        }
+      });
+
+      box.addEventListener('mouseleave', () => {
+        box.classList.remove('hovering');
+        glowVisible = false;
+      });
+    });
+
+    // Product items glare only (no glow)
+    document.querySelectorAll('.product-item').forEach(item => {
+      let glareVisible = false;
+
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        item.style.setProperty('--mouse-x', `${x}px`);
+        item.style.setProperty('--mouse-y', `${y}px`);
+
+        if (!glareVisible) {
+          item.classList.add('hovering');
+          glareVisible = true;
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        item.classList.remove('hovering');
+        glareVisible = false;
+      });
+    });
+  </script>
+</body>
+</html>
