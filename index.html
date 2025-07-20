@@ -498,15 +498,116 @@
       .navbar-container {
         top: 10px;
         width: calc(100% - 20px);
-        padding: 10px 15px;
+        padding: 12px 15px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .navbar-logo {
+        justify-content: center;
       }
 
       .navbar-logo img {
-        height: 35px;
+        height: 40px;
       }
 
       .navbar-title {
+        font-size: 18px;
+      }
+
+      .navbar-links {
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .navbar-links a {
         font-size: 16px;
+        padding: 8px 12px;
+      }
+
+      .discord-button {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+
+      .discord-button svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .main-content {
+        padding-top: 140px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .features-section h2,
+      .products-section h2 {
+        font-size: 32px;
+        margin-bottom: 35px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .feature-box {
+        padding: 30px;
+        min-height: 200px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .product-item {
+        padding: 30px;
+        min-height: 350px;
+        width: 100%;
+      }
+
+      .product-image {
+        width: 140px;
+        height: 140px;
+      }
+
+      .product-title {
+        font-size: 20px;
+      }
+
+      .product-prices {
+        font-size: 18px;
+      }
+
+      .product-prices .current-price {
+        font-size: 20px;
+      }
+
+      .view-details-button {
+        padding: 12px 24px;
+        font-size: 16px;
+        width: 80%;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer {
+        padding: 30px 20px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar-container {
+        padding: 15px;
+        gap: 12px;
       }
 
       .navbar-links {
@@ -514,21 +615,12 @@
       }
 
       .navbar-links a {
-        font-size: 14px;
-      }
-
-      .discord-button {
-        padding: 6px 12px;
-        font-size: 12px;
-      }
-
-      .discord-button svg {
-        width: 16px;
-        height: 16px;
+        font-size: 15px;
+        padding: 6px 10px;
       }
 
       .main-content {
-        padding-top: 100px;
+        padding-top: 150px;
         padding-left: 15px;
         padding-right: 15px;
       }
@@ -536,12 +628,6 @@
       .features-section h2,
       .products-section h2 {
         font-size: 28px;
-        margin-bottom: 30px;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
       }
 
       .feature-box {
@@ -549,12 +635,12 @@
       }
 
       .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+        max-width: 350px;
       }
 
       .product-item {
-        padding: 20px;
+        padding: 25px;
+        min-height: 320px;
       }
 
       .product-image {
@@ -567,48 +653,7 @@
       }
 
       .view-details-button {
-        padding: 10px 20px;
-        font-size: 14px;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .footer {
-        padding: 30px 15px 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar-container {
-        flex-direction: column;
-        gap: 10px;
-        padding: 15px;
-      }
-
-      .navbar-links {
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .main-content {
-        padding-top: 140px;
-      }
-
-      .features-section h2,
-      .products-section h2 {
-        font-size: 24px;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-item {
-        max-width: 300px;
-        margin: 0 auto;
+        width: 90%;
       }
     }
 
