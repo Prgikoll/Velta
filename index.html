@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Velta Accounts</title>
+  <title>Contacts - Velta Accounts</title>
   <style>
     * {
       margin: 0;
@@ -174,247 +174,118 @@
       margin: 0 auto;
       padding-left: 20px;
       padding-right: 20px;
+      padding-bottom: 80px;
     }
 
-    /* Features Section */
-    .features-section {
-      margin-bottom: 80px;
+    /* Page Content */
+    .page-section {
       text-align: center;
+      margin-bottom: 80px;
     }
 
-    .features-section h2 {
+    .page-section h1 {
       font-size: 36px;
       margin-bottom: 40px;
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
+    .content-box {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      text-align: left;
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    .feature-box {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      cursor: pointer;
+    .content-box h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #6b1a8b;
     }
 
-    .feature-box:hover {
-      transform: translateY(-5px);
-    }
-
-    .feature-box::before {
-      content: '';
-      position: absolute;
-      top: var(--mouse-y, 50%);
-      left: var(--mouse-x, 50%);
-      transform: translate(-50%, -50%);
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(207, 0, 255, 0.3) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      filter: drop-shadow(0 0 8px #cf00ff);
-    }
-
-    .feature-box.hovering::before {
-      opacity: 1;
-    }
-
-    .feature-box::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -150%;
-      width: 40px;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.7) 50%,
-        rgba(255,255,255,0) 100%
-      );
-      transform: rotate(25deg);
-      transition: transform 0.6s ease, left 0.6s ease, opacity 0.6s ease;
-      pointer-events: none;
-      border-radius: 16px;
-      z-index: 1;
-      opacity: 0;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
-    }
-
-    .feature-box.hovering::after {
-      left: 150%;
-      opacity: 0.6;
-    }
-
-    .feature-icon {
-      height: 50px;
-      width: 50px;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 10px rgba(255, 192, 203, 0.5), 0 0 20px rgba(255, 192, 203, 0.3) inset;
-      z-index: 2;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-icon img {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .feature-box h3,
-    .feature-box p {
-      position: relative;
-      z-index: 2;
-    }
-
-    .feature-box h3 {
+    .content-box h3 {
       font-size: 20px;
-      margin-bottom: 15px;
+      margin: 25px 0 15px;
+      color: #8e30e6;
     }
 
-    .feature-box p {
+    .content-box p, .content-box li {
       line-height: 1.6;
+      margin-bottom: 15px;
       opacity: 0.9;
     }
 
-    /* Products Section */
-    .products-section {
-      margin-bottom: 80px;
-    }
-
-    .products-section h2 {
-      font-size: 36px;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product-item {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .product-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-item::before {
-      content: none;
-    }
-
-    .product-item::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -150%;
-      width: 40px;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.7) 50%,
-        rgba(255,255,255,0) 100%
-      );
-      transform: rotate(25deg);
-      transition: transform 0.6s ease, left 0.6s ease, opacity 0.6s ease;
-      pointer-events: none;
-      border-radius: 16px;
-      z-index: 1;
-      opacity: 0;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
-    }
-
-    .product-item.hovering::after {
-      left: 150%;
-      opacity: 0.6;
-    }
-
-    .product-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 12px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .product-title {
+    .content-box h2 {
       font-size: 20px;
-      font-weight: 700;
-      margin: 0 0 15px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .product-prices {
-      font-size: 16px;
       margin-bottom: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      align-items: center;
-      position: relative;
-      z-index: 2;
+      color: #8e30e6;
+      font-weight: bold;
     }
 
-    .product-prices .old-price {
-      text-decoration: line-through;
-      color: #e3c3e6;
-      font-weight: 500;
-      font-size: 14px;
+    .content-box h3 {
+      font-size: 20px;
+      margin: 25px 0 15px;
+      color: #8e30e6;
+      font-weight: bold;
     }
 
-    .product-prices .current-price {
-      font-weight: 700;
-      color: #fbfafc;
-      font-size: 18px;
+    .content-box p, .content-box li {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      opacity: 0.9;
+      font-weight: normal;
     }
 
-    .view-details-button {
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-item h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #8e30e6;
+      font-weight: bold;
+    }
+
+    .contact-item p {
+      font-weight: normal;
+    }
+
+    .contact-item a {
+      color: #000000;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .contact-item a:hover {
+      color: #333333;
+    }
+
+    .contact-item a {
+      color: #cccccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: white;
+    }
+
+    .discord-link {
       background: linear-gradient(90deg, #8e30e6, #de58f0);
       border: none;
       border-radius: 20px;
@@ -428,13 +299,68 @@
       user-select: none;
       text-decoration: none;
       font-size: 16px;
-      position: relative;
-      z-index: 2;
+      display: inline-block;
+      margin-top: 10px;
     }
 
-    .view-details-button:hover {
+    .discord-link:hover {
       background: linear-gradient(90deg, #de58f0, #8e30e6);
       transform: scale(1.05);
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: black;
+      color: white;
+      padding: 40px 20px 20px;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #cccccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: white;
+    }
+
+    .footer-section p {
+      color: #cccccc;
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
     }
 
     /* Mobile Responsive */
@@ -477,44 +403,27 @@
         padding-right: 15px;
       }
 
-      .features-section h2,
-      .products-section h2 {
+      .page-section h1 {
         font-size: 28px;
         margin-bottom: 30px;
       }
 
-      .features-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .feature-box {
-        padding: 25px;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .product-item {
+      .content-box {
         padding: 30px;
-        max-width: none;
-        width: 100%;
       }
 
-      .product-image {
-        width: 120px;
-        height: 120px;
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
-      .product-title {
-        font-size: 18px;
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
 
-      .view-details-button {
-        padding: 10px 20px;
-        font-size: 14px;
+      .footer {
+        padding: 30px 15px 15px;
       }
     }
 
@@ -534,19 +443,12 @@
         padding-top: 140px;
       }
 
-      .features-section h2,
-      .products-section h2 {
+      .page-section h1 {
         font-size: 24px;
       }
 
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-item {
-        padding: 30px;
-        max-width: none;
-        width: 100%;
+      .content-box {
+        padding: 25px;
       }
     }
 
@@ -563,8 +465,9 @@
       <div class="navbar-title">Velta Accounts</div>
     </div>
     <div class="navbar-links">
-      <a href="#">Home</a>
-      <a href="#products-section">Products</a>
+      <a href="index.html">Home</a>
+      <a href="return-policy.html">Policy</a>
+      <a href="index.html#products-section">Products</a>
       <a href="https://discord.gg/velta" target="_blank" class="discord-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
           <path
@@ -578,57 +481,76 @@
   </div>
 
   <div class="main-content">
-    <div class="features-section">
-      <h2>WHY US?</h2>
-      <div class="features-grid">
-        <div class="feature-box">
-          <div class="feature-icon">
-            <img src="https://i.ibb.co/BFZDpdN/IMG-8113.png" alt="Delivery Icon" />
-          </div>
-          <h3>Instant Delivery</h3>
-          <p>Instant delivery is available for the majority of our products, ensuring the best possible experience.</p>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon">
-            <img src="https://i.ibb.co/7xkprx5d/IMG-8114.png" alt="Reputation Icon" />
-          </div>
-          <h3>Reputable</h3>
-          <p>Trusted by thousands, our service consistently delivers excellence and maintains a stellar industry reputation.</p>
-        </div>
-        <div class="feature-box">
-          <div class="feature-icon">
-            <img src="https://i.ibb.co/NgH5xPMw/IMG-8115.png" alt="High Quality Icon" />
-          </div>
-          <h3>High Quality</h3>
-          <p>Verified quality and authenticity guaranteed, meeting the highest standards for customer satisfaction and reliability.</p>
-        </div>
-      </div>
-    </div>
+    <div class="page-section">
+      <h1>Contact Us</h1>
+      <div class="content-box">
+        <h2>Get in Touch</h2>
+        <p>We're here to help! Whether you have questions about our CS2 accounts, need support with your order, or want to learn more about our services, don't hesitate to reach out.</p>
 
-    <div id="products-section" class="products-section">
-      <h2>OUR PRODUCTS</h2>
-      <div class="products-grid">
-        <div class="product-item">
-          <div class="product-image" style="background-image: url('https://i.ibb.co/KpBsZTqd/IMG-8090.png');"></div>
-          <div class="product-title">CS2 NFA Account</div>
-          <div class="product-prices">
-            <span class="current-price">0.85€</span>
-            <span class="old-price">1.99€</span>
+        <h3>Contact Methods</h3>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <h4>Discord Support</h4>
+            <p>Join our Discord server for instant support and community updates. Our support team is active and ready to help!</p>
+            <a href="https://discord.gg/velta" target="_blank" class="discord-link">Join Discord</a>
           </div>
-          <a class="view-details-button" href="https://velta.mysellauth.com/product/cs2-nfa-account" target="_blank">View Details</a>
-        </div>
-        <div class="product-item">
-          <div class="product-image" style="background-image: url('https://i.ibb.co/KpBsZTqd/IMG-8090.png');"></div>
-          <div class="product-title">CS2 FA Account</div>
-          <div class="product-prices">
-            <span class="current-price">11.99€</span>
-            <span class="old-price">15.99€</span>
+          
+          <div class="contact-item">
+            <h4>Email Support</h4>
+            <p>For detailed inquiries or account-specific issues, send us an email. Please note that email responses can take up to 7 days.</p>
+            <a href="mailto:Velta.Accounts@mail.ee">Velta.Accounts@mail.ee</a>
           </div>
-          <a class="view-details-button" href="https://velta.mysellauth.com/product/cs2-fa-account" target="_blank">View Details</a>
+          
+          <div class="contact-item">
+            <h4>Response Time</h4>
+            <p>We typically respond to all inquiries within 24 hours. Discord messages are usually answered much faster!</p>
+          </div>
         </div>
+
+        <h3>Before Contacting Support</h3>
+        <p>To help us assist you quickly, please have the following information ready:</p>
+        <ul>
+          <li>Your order number (if applicable)</li>
+          <li>Account details or product information</li>
+          <li>Screenshots of any issues you're experiencing</li>
+          <li>Clear description of your question or problem</li>
+        </ul>
+
+        <h3>Business Hours</h3>
+        <p>Our support team is available:</p>
+        <ul>
+          <li><strong>Discord:</strong> 24/7 community support</li>
+          <li><strong>Email:</strong> Monday - Sunday, responses within 7 days</li>
+          <li><strong>Peak hours:</strong> 9:00 AM - 11:00 PM (GMT)</li>
+        </ul>
+
+        <h3>Frequently Asked Questions</h3>
+        <p>Before contacting us, you might find answers to common questions in our <a href="return-policy.html" style="color: #de58f0;">Our Policy</a> page.</p>
       </div>
     </div>
   </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>HELP</h3>
+        <ul>
+          <li><a href="return-policy.html">Our Policy</a></li>
+          <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>About Velta.cc</h3>
+        <p>We specialize in providing high-quality CS2 accounts at competitive prices. Our mission is to deliver secure, verified gaming accounts with instant delivery for the best Counter-Strike 2 experience.</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>Velta Accounts © 2025 | We are not affiliated with any other brands, companies that own brands and the organizations they control.</p>
+    </div>
+  </footer>
 
   <script>
     // Navbar glow + glare interaction
@@ -652,54 +574,6 @@
     navbar.addEventListener('mouseleave', () => {
       navbar.classList.remove('hovering');
       navbarGlareVisible = false;
-    });
-
-    // Feature boxes glow and glare
-    document.querySelectorAll('.feature-box').forEach(box => {
-      let glowVisible = false;
-
-      box.addEventListener('mousemove', (e) => {
-        const rect = box.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        box.style.setProperty('--mouse-x', `${x}px`);
-        box.style.setProperty('--mouse-y', `${y}px`);
-
-        if (!glowVisible) {
-          box.classList.add('hovering');
-          glowVisible = true;
-        }
-      });
-
-      box.addEventListener('mouseleave', () => {
-        box.classList.remove('hovering');
-        glowVisible = false;
-      });
-    });
-
-    // Product items glare only (no glow)
-    document.querySelectorAll('.product-item').forEach(item => {
-      let glareVisible = false;
-
-      item.addEventListener('mousemove', (e) => {
-        const rect = item.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        item.style.setProperty('--mouse-x', `${x}px`);
-        item.style.setProperty('--mouse-y', `${y}px`);
-
-        if (!glareVisible) {
-          item.classList.add('hovering');
-          glareVisible = true;
-        }
-      });
-
-      item.addEventListener('mouseleave', () => {
-        item.classList.remove('hovering');
-        glareVisible = false;
-      });
     });
   </script>
 </body>
