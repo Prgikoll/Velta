@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Policy - Velta Accounts</title>
+  <title>Contacts - Velta Accounts</title>
   <style>
     * {
       margin: 0;
@@ -200,6 +200,24 @@
     }
 
     .content-box h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #6b1a8b;
+    }
+
+    .content-box h3 {
+      font-size: 20px;
+      margin: 25px 0 15px;
+      color: #8e30e6;
+    }
+
+    .content-box p, .content-box li {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+
+    .content-box h2 {
       font-size: 20px;
       margin-bottom: 20px;
       color: #8e30e6;
@@ -220,9 +238,74 @@
       font-weight: normal;
     }
 
-    .content-box ul {
-      margin-left: 20px;
-      margin-bottom: 20px;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-item h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #8e30e6;
+      font-weight: bold;
+    }
+
+    .contact-item p {
+      font-weight: normal;
+    }
+
+    .contact-item a {
+      color: #000000;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .contact-item a:hover {
+      color: #333333;
+    }
+
+    .contact-item a {
+      color: #cccccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: white;
+    }
+
+    .discord-link {
+      background: linear-gradient(90deg, #8e30e6, #de58f0);
+      border: none;
+      border-radius: 20px;
+      padding: 12px 24px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-align: center;
+      width: auto;
+      user-select: none;
+      text-decoration: none;
+      font-size: 16px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .discord-link:hover {
+      background: linear-gradient(90deg, #de58f0, #8e30e6);
+      transform: scale(1.05);
     }
 
     /* Footer Styles */
@@ -329,6 +412,11 @@
         padding: 30px;
       }
 
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
       .footer-content {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -393,47 +481,50 @@
 
   <div class="main-content">
     <div class="page-section">
-      <h1>Our Policy</h1>
+      <h1>Contact Us</h1>
       <div class="content-box">
-        <h2>1. Terms of Service (TOS)</h2>
-        <p>By using our services and purchasing accounts through our platform, you agree to the following Terms of Service:</p>
+        <h2>Get in Touch</h2>
+        <p>We're here to help! Whether you have questions about our CS2 accounts, need support with your order, or want to learn more about our services, don't hesitate to reach out.</p>
 
-        <h3>1.1 Account Sales and Access Types</h3>
-        <p>We sell two types of CS2 accounts:</p>
-        <p><strong>Full Access (FA):</strong> You receive full control of the account including login credentials and recovery options.</p>
-        <p><strong>Not Full Access (NFA):</strong> You receive account credentials without control over recovery information or associated email.</p>
-        <p>NFA accounts are sold <strong>"as is"</strong> and may have restricted access or higher risk of recovery by previous owners.</p>
+        <h3>Contact Methods</h3>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <h4>Discord Support</h4>
+            <p>Join our Discord server for instant support and community updates. Our support team is active and ready to help!</p>
+            <a href="https://discord.gg/velta" target="_blank" class="discord-link">Join Discord</a>
+          </div>
+          
+          <div class="contact-item">
+            <h4>Email Support</h4>
+            <p>For detailed inquiries or account-specific issues, send us an email. Please note that email responses can take up to 7 days.</p>
+            <a href="mailto:Velta.Accounts@mail.ee">Velta.Accounts@mail.ee</a>
+          </div>
+          
+          <div class="contact-item">
+            <h4>Response Time</h4>
+            <p>We typically respond to all inquiries within 24 hours. Discord messages are usually answered much faster!</p>
+          </div>
+        </div>
 
-        <h3>1.2 Ownership and Risks</h3>
-        <p>You acknowledge that accounts sold may be subject to Valve's Terms of Service, and use of these accounts is subject to their rules.</p>
-        <p>We are not responsible if Valve restricts, suspends, or bans any accounts after purchase.</p>
-        <p>You are responsible for securing and using the accounts legally and ethically.</p>
+        <h3>Before Contacting Support</h3>
+        <p>To help us assist you quickly, please have the following information ready:</p>
+        <ul>
+          <li>Your order number (if applicable)</li>
+          <li>Account details or product information</li>
+          <li>Screenshots of any issues you're experiencing</li>
+          <li>Clear description of your question or problem</li>
+        </ul>
 
-        <h3>1.3 Purchase and Payment</h3>
-        <p>All sales are final.</p>
-        <p>Payments are processed securely through Bitcoin, Paypal (F&F), Litecoin.</p>
+        <h3>Business Hours</h3>
+        <p>Our support team is available:</p>
+        <ul>
+          <li><strong>Discord:</strong> 24/7 community support</li>
+          <li><strong>Email:</strong> Monday - Sunday, responses within 7 days</li>
+          <li><strong>Peak hours:</strong> 9:00 AM - 11:00 PM (GMT)</li>
+        </ul>
 
-        <h3>1.4 Refunds and Replacements</h3>
-        <p>Replacements are only provided for accounts that are <strong>invalid or inaccessible</strong> at the time of delivery.</p>
-        <p>You must notify us within <strong>6 hours</strong> of delivery with proof of issue.</p>
-        <p>NFA accounts come with no refund options due to inherent risks.</p>
-
-        <h3>1.5 Prohibited Activities</h3>
-        <p>You agree not to use purchased accounts for illegal activities, cheating, fraud, or violation of any third-party terms.</p>
-        <p>We reserve the right to refuse service or cancel orders for suspicious or prohibited use.</p>
-
-        <h3>1.6 Limitation of Liability</h3>
-        <p>We disclaim all warranties regarding the accounts, including but not limited to merchantability and fitness for a particular purpose.</p>
-        <p>Our liability is limited to the purchase price paid for the account.</p>
-
-        <h2>2. Disclaimer / Risk Warning</h2>
-        <p>Buying and using Steam accounts carries risks including potential bans, suspensions, or loss of access.</p>
-        <p>You assume full responsibility for compliance with Valve's Terms of Service and applicable laws.</p>
-        <p>We do not guarantee uninterrupted access or account longevity.</p>
-        <p><strong>Use all accounts at your own risk.</strong></p>
-
-        <h3>Contact Support</h3>
-        <p>For any questions about our policies or to submit a support request, please visit our <a href="contacts.html" style="color: #de58f0;">Contacts</a> page or join our Discord server.</p>
+        <h3>Frequently Asked Questions</h3>
+        <p>Before contacting us, you might find answers to common questions in our <a href="return-policy.html" style="color: #de58f0;">Our Policy</a> page.</p>
       </div>
     </div>
   </div>
